@@ -9,6 +9,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'feedback', component: FeedbackComponent},
   {path: 'login', component: AuthorizationComponent},
+  {path: 'register', component: RegistrationComponent},
   {path: 'account', component: AccountInfoComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];

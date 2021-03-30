@@ -11,6 +11,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
     PaymentsComponent,
     AboutUsComponent,
     CategoriesComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

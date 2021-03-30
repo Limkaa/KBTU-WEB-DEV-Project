@@ -1,13 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HomeComponent } from './home/home.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+
 const routes: Routes = [
-  // {path: 'home', component: HomeComponent},
-  // {path: 'about', component: AboutComponent},
-  // {path: 'albums', component: AlbumsComponent},
-  // {path: 'albums/:id', component: AlbumDetailComponent},
-  // {path: 'albums/:id/photos', component: AlbumPhotosComponent},
-  // {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutUsComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'feedback', component: FeedbackComponent},
+  {path: 'login', component: AuthorizationComponent},
+  {path: 'account', component: AccountInfoComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

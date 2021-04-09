@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-info.component.css']
 })
 export class AccountInfoComponent implements OnInit {
+  loaded: boolean = true
+  wishes = []
 
   constructor() { }
 

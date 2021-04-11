@@ -1,13 +1,15 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    top: 0;
+	left: 0;
+    box-sizing: content-box;
     font-family: Segoe UI, Helvetica, Arial, sans-serif;
 }
 
 .lower-navigation {
-padding-left: 100px;
-padding-right: 100px;
+padding-left: 0px;
+padding-right: 0px;
 text-align: center;
 }
 

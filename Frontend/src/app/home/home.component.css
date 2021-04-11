@@ -1,0 +1,39 @@
+.main-area {
+    padding-top: 64px;
+    padding-right: 40px;
+    padding-left: 40px;
+    height: 740px;
+    width: 1424px;
+    background-image: url('../../assets/background.jpg');
+    background-size: cover;
+    text-align: center;
+}
+
+.main-area h1 {
+    color: rgb(35, 65, 21);
+    font-size: 60px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.main-area p {
+    color: rgb(27, 34, 10);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav a{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 70px;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 18px;
+    font-size: 32px;
+    color: rgb(23, 80, 21);
+}
+
+nav a:hover{
+    color: rgb(85, 255, 93);
+}

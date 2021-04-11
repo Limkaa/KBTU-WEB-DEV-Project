@@ -1,1 +1,24 @@
-<router-outlet></router-outlet>
+<body> 
+  <nav>
+    <ul class="navigation-bar">
+      <li class="navigation-option">
+        <a routerLink="/home" class="navigation-option">Home</a>
+      </li>
+      <li class="navigation-option">
+        <a routerLink="/about" class="navigation-option">About us</a>
+      </li>
+      <li class="navigation-option">
+        <a routerLink="/categories" class="navigation-option">Meals</a>
+      </li>
+      <li class="navigation-option">
+        <a routerLink="/feedback" class="navigation-option">Feedback</a>
+      </li>
+      <li class="navigation-option">
+        <a routerLink="/login" class="navigation-option">Account</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</body>

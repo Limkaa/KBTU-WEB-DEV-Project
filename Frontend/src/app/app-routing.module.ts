@@ -1,14 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { FeedbackComponent } from './feedback/feedback.component';
+
 import { HomeComponent } from './home/home.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'about', component: AboutComponent },
-  { path: 'feedback', component: FeedbackComponent }
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutUsComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'feedback', component: FeedbackComponent},
+  {path: 'login', component: AuthorizationComponent},
+  {path: 'register', component: RegistrationComponent},
+  {path: 'account', component: AccountInfoComponent},
+  {path: 'payment', component: PaymentsComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

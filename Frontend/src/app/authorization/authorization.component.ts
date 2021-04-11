@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Account} from '../models'
 
 @Component({
   selector: 'app-authorization',
@@ -11,5 +12,4 @@ export class AuthorizationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

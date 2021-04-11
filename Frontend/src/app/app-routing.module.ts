@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'login', component: AuthorizationComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'account', component: AccountInfoComponent},
+  {path: 'payment', component: PaymentsComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

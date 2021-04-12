@@ -13,9 +13,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
     AuthorizationComponent,
@@ -25,8 +26,9 @@ import { RegistrationComponent } from './registration/registration.component';
     AboutUsComponent,
     CategoriesComponent,
     FeedbackComponent,
-    RegistrationComponent
-  ],
+    RegistrationComponent,
+      FooterComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

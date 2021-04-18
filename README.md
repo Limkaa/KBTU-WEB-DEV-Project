@@ -8,11 +8,11 @@ Description: Our site helps users to order healthy food. The user chooses his fa
 
 Team members responsibility:
 
-# Alim Khamrayev:
+Alim Khamrayev:
 - Login (with keeping session), registration of user (Frontend/Backend)
 - Account page with general info and CRUD operation of managing personal wishes in food, for example alergies (Frontend/Backend)
 - Payment page for extending days of personal subscription for our service (Frontend/Backend)
 
-# Ayazhan Utemur
+Ayazhan Utemur:
 
-# Nurai Turganbaeva
+Nurai Turganbaeva:

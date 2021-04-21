@@ -6,3 +6,9 @@ export interface Account {
 	password: string;
 	balance: number;
 }
+
+export interface Comment {
+	id: number;
+	email: string;
+	content: string;
+}

@@ -8,6 +8,12 @@ export interface Account {
 	wishes: Array<string>;
 }
 
+export interface Comment {
+	id: number;
+	email: string;
+	content: string;
+}
+
 export interface Payment {
 	id: number;
 	method: string;

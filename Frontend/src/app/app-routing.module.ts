@@ -10,6 +10,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { FoodDetailComponent } from './food-detail/food-detail.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,7 +21,9 @@ const routes: Routes = [
   {path: 'register', component: RegistrationComponent},
   {path: 'account', component: AccountInfoComponent},
   {path: 'payment', component: PaymentsComponent},
+  {path: 'product/:id', component: FoodDetailComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
+
 ];
 
 @NgModule({

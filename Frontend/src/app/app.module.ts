@@ -14,6 +14,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FooterComponent } from './footer/footer.component';
+import { FoodDetailComponent } from './food-detail/food-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [	
@@ -27,12 +29,14 @@ import { FooterComponent } from './footer/footer.component';
     CategoriesComponent,
     FeedbackComponent,
     RegistrationComponent,
-      FooterComponent
+    FooterComponent,
+    FoodDetailComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

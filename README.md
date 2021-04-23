@@ -13,6 +13,12 @@ Alim Khamrayev:
 - Account page with general info and CRUD operation of managing personal wishes in food, for example alergies (Frontend/Backend)
 - Payment page for extending days of personal subscription for our service (Frontend/Backend)
 
-Ayazhan Utemur:
+Ayazhan Utemurat:
+- Categories list (Frontend/Backend)
+- Products of the category with basic information (Frontend/Backend)
+- Product page with detailed information about it (Frontend/Backend)
 
 Nurai Turganbaeva:
+- Home page (Frontend)
+- About us page (Frontend)
+- Feedback page with opportunity to leave a comment (Frontend/Backend)

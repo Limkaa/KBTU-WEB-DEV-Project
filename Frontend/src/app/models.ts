@@ -3,12 +3,27 @@ export interface Account {
 	name: string;
 	email: string;
 	phone: string;
-	password: string;
-	balance: number;
+	address: string;
+	subscription: number;
+	wishes: Array<string>;
 }
 
 export interface Comment {
 	id: number;
 	email: string;
 	content: string;
+}
+
+export interface Payment {
+	id: number;
+	method: string;
+	days: number;
+}
+
+export interface AuthToken {
+	token: string;
+}
+
+export interface ResponseMessage {
+	message: string;
 }

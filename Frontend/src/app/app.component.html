@@ -14,7 +14,11 @@
         <a routerLink="/feedback" class="navigation-option">Feedback</a>
       </li>
       <li class="navigation-option">
-        <a routerLink="/login" class="navigation-option">Account</a>
+        <a *ngIf="!logged" routerLink="/login" class="navigation-option">Login</a>
+        <a *ngIf="logged" routerLink="/account" class="navigation-option">Account</a>
+      </li>
+      <li *ngIf="logged" class="navigation-option">
+        <a class="navigation-option" (click)="logout()">Log out</a>
       </li>
     </ul>
   </nav>

@@ -1,26 +1,45 @@
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-# Create your models here.
-class Account(models.Model):
-    name = models.CharField(max_length=200)
-    email = models.CharField(max_length=300)
-    phone = models.CharField(max_length=50)
-    address = models.CharField(max_length=500)
-    password = models.TextField()
-    subscription = models.IntegerField()
-    wishes = ArrayField(models.TextField())
 
-    def __str__(self):
-        return self.email
+class Category(models.Model):
+    title = models.CharField(max_length=200)
 
     def to_json(self):
         return {
             'id': self.id,
-            'name': self.name,
-            'email': self.email,
-            'phone': self.phone,
-            'address': self.address,
-            'subscription': self.subscription,
-            'wishes': self.wishes
+            'title': self.title
         }
+
+    def __str__(self):
+        return f'{self.id}: {self.title}'
+
+# class Ingredient(models.Model):
+#     detail = models.CharField(max_length=500)
+#     ingredients= models.CharField(max_length=500)
+#     notes= models.CharField(max_length=500)
+
+#     def to_json(self):
+#         return {
+#             'id':self.id,
+#             'detail': self.detail,
+#             'ingredients': self.ingredients,
+#             'notes': self.notes
+#         }
+
+class Product(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(default='')
+    image = models.CharField(max_length=1000, default="1")
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='product')
+    detail = models.CharField(max_length=500, default='')
+    ingredients= models.CharField(max_length=500, default='')
+    notes= models.CharField(max_length=500, default='')
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.id}: {self.title}'
+
+
+
+
+

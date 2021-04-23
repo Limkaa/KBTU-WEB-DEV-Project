@@ -17,7 +17,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FooterComponent } from './footer/footer.component';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
 import { HttpClientModule } from '@angular/common/http';
-import {AuthInterceptor} from './auth-interceptor';
 
 @NgModule({
   declarations: [

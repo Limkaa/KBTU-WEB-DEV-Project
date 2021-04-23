@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Account} from '../models'
+import {Account} from '../models';
+import {ApiService} from '../api.service';
+import { AppComponent } from '../app.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
@@ -8,8 +11,34 @@ import {Account} from '../models'
 })
 export class AuthorizationComponent implements OnInit {
 
-  constructor() { }
+	email = '';
+	password = '';
+	returnPage = 'account';
 
-  ngOnInit(): void {
-  }
+	constructor(private apiService: ApiService, 
+				private appComponent: AppComponent,
+				private router: Router,
+    			private route: ActivatedRoute) { }
+
+	ngOnInit() {
+	    // Get the query params
+	    if (this.appComponent.logged) {
+	    	this.router.navigateByUrl(this.returnPage);
+	    }
+	  }
+
+	login() {
+		if (this.email && this.password) {
+	      // this.apiService.login(this.email, this.password).subscribe((data) => {
+	      	// if (!data.token) {
+	      	// 	alert("Invalid email or password!")
+	      	// }
+	      // });
+	      localStorage.setItem('token', 'token')
+	      this.appComponent.logged = true;
+	      this.router.navigateByUrl(this.returnPage);
+    	} else {
+    		alert('Error! Please be sure that entered email and password are correct! After that you can try again.')
+    	}
+	}
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service'
+import {AppComponent} from '../app.component'
 
 @Component({
   selector: 'app-payments',
@@ -8,14 +11,23 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentsComponent implements OnInit {
 
   plans = [25000,50000,75000,150000,300000];
+  methods = ['Visa/Mastercard','PayPal','Qiwi']
   paymentAmount!: number;
   paymentPlan: number = 2;
   paymentMethod: number = 1;
-  constructor() { }
 
-  ngOnInit(): void {
-  	this.paymentAmount = this.plans[this.paymentPlan-1];
-  }
+  constructor(private apiService: ApiService, 
+              private appComponent: AppComponent,
+              private router: Router,
+              private route: ActivatedRoute) { }
+
+  ngOnInit() {
+      if (!this.appComponent.logged) {
+        this.router.navigateByUrl('login');
+      } else {
+        this.paymentAmount = this.plans[this.paymentPlan-1];
+      }
+    }
 
   onPaymentPlanChange(event: any){
   	this.paymentPlan = event.target.value;
@@ -27,7 +39,12 @@ export class PaymentsComponent implements OnInit {
   }
 
   paymentProcess() {
-  	console.log(this.paymentPlan)
-  	console.log(this.paymentMethod)  
+  	this.apiService.extendSubscription(this.plans[this.paymentPlan], this.methods[this.paymentMethod]).subscribe((data) => {
+      if (data.message == 'Successful payment') {
+        this.router.navigateByUrl('account');
+      } else {
+        alert('Something went wrong! Please try again or connect with tech support!')
+      }
+    });
   }
 }

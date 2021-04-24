@@ -13,9 +13,9 @@ export class ApiService {
 		client.head("Access-Control-Allow-Origin");
 	}
 
-	login(email: string, password: string): Observable<AuthToken> {
+	login(username: string, password: string): Observable<AuthToken> {
 		return this.client.post<AuthToken>(`${this.BASE_URL}/api/login/`, {
-			email,
+			username,
 			password
 		});
 	}

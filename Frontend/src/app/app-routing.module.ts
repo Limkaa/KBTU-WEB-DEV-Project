@@ -22,7 +22,8 @@ const routes: Routes = [
   {path: 'account', component: AccountInfoComponent},
   {path: 'payment', component: PaymentsComponent},
   {path: 'product/:id', component: FoodDetailComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', redirectTo: 'home'}
 
 ];
 

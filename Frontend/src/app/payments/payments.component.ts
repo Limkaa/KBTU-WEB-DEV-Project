@@ -12,9 +12,10 @@ export class PaymentsComponent implements OnInit {
 
   plans = [25000,50000,75000,150000,300000];
   methods = ['Visa/Mastercard','PayPal','Qiwi']
+  days = [30, 60, 90, 180, 365]
   paymentAmount!: number;
-  paymentPlan: number = 2;
-  paymentMethod: number = 1;
+  paymentPlan: number = 1;
+  paymentMethod: number = 0;
 
   constructor(private apiService: ApiService, 
               private appComponent: AppComponent,
@@ -31,7 +32,7 @@ export class PaymentsComponent implements OnInit {
 
   onPaymentPlanChange(event: any){
   	this.paymentPlan = event.target.value;
-  	this.paymentAmount = this.plans[this.paymentPlan-1];
+  	this.paymentAmount = this.plans[this.paymentPlan];
   }
 
   onPaymentMethodChange(event: any){
@@ -39,8 +40,8 @@ export class PaymentsComponent implements OnInit {
   }
 
   paymentProcess() {
-  	this.apiService.extendSubscription(this.plans[this.paymentPlan], this.methods[this.paymentMethod]).subscribe((data) => {
-      if (data.message == 'Successful payment') {
+  	this.apiService.extendSubscription(this.plans[this.paymentPlan], this.days[this.paymentPlan], this.methods[this.paymentMethod]).subscribe((data) => {
+      if (!data.message) {
         this.router.navigateByUrl('account');
       } else {
         alert('Something went wrong! Please try again or connect with tech support!')

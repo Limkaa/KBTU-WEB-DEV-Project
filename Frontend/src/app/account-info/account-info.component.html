@@ -18,7 +18,7 @@
 			</div>
 			<div class="info-field">
 				<div class="field-title">Email</div>
-				<div class="field-value">{{account.email}}</div>
+				<div class="field-value">{{account.username}}</div>
 			</div>
 			<div class="info-field">
 				<div class="field-title">Address</div>
@@ -40,12 +40,11 @@
 
 			<div *ngIf="loaded" class="wishes-list">
 			  	<div *ngFor="let wish of account.wishes; let i = index;" class="wish-item">
-			    	<input type="text" class="wish-text" [value]="account.wishes[i]" (change)="change_wish(i, $event)">
+			    	<input type="text" class="wish-text" [value]="account.wishes[i].text" #wishField>
+			    	<button class="save-button" (click)="update_wish(i, wishField.value)">✓</button>
 			    	<button class="delete-button" (click)="delete_wish(i)">X</button>
 			  	</div>
 			</div>
-
-			<button class="save-button" (click)="save_changes()">Save changes</button>
 		</div>
 		<p *ngIf="!loaded">Loading additional info list...</p>
 	</div>

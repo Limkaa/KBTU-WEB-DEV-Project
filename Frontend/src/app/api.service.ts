@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {Account, Payment, AuthToken, ResponseMessage} from './models';
+import {Account, Payment, AuthToken, ResponseMessage, Wish} from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +13,22 @@ export class ApiService {
 		client.head("Access-Control-Allow-Origin");
 	}
 
-	login(email: string, password: string): Observable<AuthToken> {
+	login(username: string, password: string): Observable<AuthToken> {
 		return this.client.post<AuthToken>(`${this.BASE_URL}/api/login/`, {
-			email,
+			username,
 			password
 		});
 	}
 
-	register(personName: string, email: string, phone: string, address: string, password: string): Observable<ResponseMessage> {
+	register(name: string, username: string, phone: string, address: string, password: string): Observable<ResponseMessage> {
 		return this.client.post<ResponseMessage>(`${this.BASE_URL}/api/register/`, {
-			personName,
-			email,
-			phone,
-			address,
-			password
+			password,
+			profile: {
+				name,
+				phone,
+				username,
+				address
+			}
 		});
 	}
 
@@ -34,16 +36,27 @@ export class ApiService {
 		return this.client.get<Account>(`${this.BASE_URL}/api/account/`);
 	}
 
-	saveAccountChanges(wishes: Array<string>): Observable<ResponseMessage> {
-		return this.client.put<ResponseMessage>(`${this.BASE_URL}/api/account/`, {
-			wishes
+	addWish(text: string): Observable<Wish> {
+		return this.client.post<Wish>(`${this.BASE_URL}/api/wish/`, {
+			text
 		});
 	}
 
-	extendSubscription(days: number, paymentMethod: string): Observable<ResponseMessage> {
-		return this.client.post<ResponseMessage>(`${this.BASE_URL}/api/account/`, {
-			days,
-			paymentMethod
+	updateWish(id: number, text: string): Observable<Wish> {
+		return this.client.put<Wish>(`${this.BASE_URL}/api/wish/${id}/`, {
+			text
+		});
+	}
+
+	deleteWish(id: number): Observable<ResponseMessage> {
+		return this.client.delete<ResponseMessage>(`${this.BASE_URL}/api/wish/${id}/`)
+	}
+
+	extendSubscription(amount: number, days: number, method: string): Observable<ResponseMessage> {
+		return this.client.post<ResponseMessage>(`${this.BASE_URL}/api/payment/`, {
+			amount,
+			method,
+			days
 		});
 	} 
 

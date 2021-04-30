@@ -29,14 +29,15 @@ export class AuthorizationComponent implements OnInit {
 
 	login() {
 		if (this.email && this.password) {
-	      // this.apiService.login(this.email, this.password).subscribe((data) => {
-	      	// if (!data.token) {
-	      	// 	alert("Invalid email or password!")
-	      	// }
-	      // });
-	      localStorage.setItem('token', 'token')
-	      this.appComponent.logged = true;
-	      this.router.navigateByUrl(this.returnPage);
+	      this.apiService.login(this.email, this.password).subscribe((data) => {
+	      	if (data.token != null) {
+	      		localStorage.setItem('token', data.token)
+	      		this.appComponent.logged = true;
+	      		this.router.navigateByUrl(this.returnPage);
+	      	} else {
+	      		alert('Incorrect email or password! Try again.')
+	      	}
+	      });
     	} else {
     		alert('Error! Please be sure that entered email and password are correct! After that you can try again.')
     	}

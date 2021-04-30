@@ -31,15 +31,3 @@ class ProductListAPIView(generics.ListCreateAPIView):
 class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset= Product.objects.all()
     serializer_class = ProductSerializer
-
-# class IngredientListAPIView(generics.RetrieveUpdateDestroyAPIView):
-#     queryset= Ingredient.objects.all()
-#     serializer_class = IngredinetSerializer
-
-# class ProductIngredientAPIView(generics.ListCreateAPIView):
-#     serializer_class = IngredinetSerializer
-
-#     def get_queryset(self):
-#         product = get_object_or_404(Product, id=self.kwargs.get('pk'))
-#         queryset = product.ingredients.all()
-#         return queryset

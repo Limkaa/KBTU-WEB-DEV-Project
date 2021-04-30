@@ -1,3 +1,5 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import User, PermissionsMixin
 from django.db import models
 
 
@@ -40,6 +42,33 @@ class Product(models.Model):
         return f'{self.id}: {self.title}'
 
 
+class Profile(models.Model):
+    name = models.CharField(max_length=100)
+    username = models.CharField(unique=True, max_length=100)
+    phone = models.CharField(max_length=50)
+    address = models.CharField(max_length=300)
+    subscription = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.username
 
 
+class Wish(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='wishes')
+    text = models.TextField()
 
+    def __str__(self):
+        return f'{self.id}: ({self.user}): {self.text}'
+
+    class Meta:
+        verbose_name_plural = "Wishes"
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    amount = models.IntegerField()
+    method = models.CharField(max_length=50)
+    days = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.user}: {self.amount} -- {self.days} -- {self.method}'

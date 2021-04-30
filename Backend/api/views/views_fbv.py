@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view
 
-from api.models import Product
+from api.models import Product, Profile, Wish, Payment
 from api.models import Category
-from api.serializers import CategorySerializer, CategorySerializer2
+from api.serializers import CategorySerializer, CategorySerializer2, ProfileSerializer, UserSerializer, \
+    PaymentSerializer
 from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
@@ -36,3 +37,42 @@ def category_detail(request, category_id):
     elif request.method == 'DELETE':
         category.delete()
         return Response({'message': 'deleted'}, status =200)
+
+
+@api_view(['POST'])
+def register(request):
+    serializer = UserSerializer(data = request.data)
+    serializer_profile = ProfileSerializer(data = request.data.get("profile"))
+    if serializer.is_valid() and serializer_profile.is_valid():
+        serializer.save()
+        serializer_profile.save()
+        return Response(serializer_profile.data)
+    return Response(serializer.errors)
+
+
+@api_view(['GET'])
+def account(request):
+    try:
+        profile = Profile.objects.get(username=request.user.username)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+
+    except Profile.DoesNotExist as e:
+        return Response({'message': str(e)}, status=400)
+
+
+@api_view(['POST'])
+def payment(request):
+    try:
+        user = Profile.objects.get(username=request.user.username)
+    except Profile.DoesNotExist as e:
+        return Response({'message': str(e)}, status=400)
+
+    request.data.update({'user_id': user.id})
+    serializer = PaymentSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        user.subscription += serializer.data.get('days')
+        user.save()
+        return Response(serializer.data)
+    return Response(serializer.errors)

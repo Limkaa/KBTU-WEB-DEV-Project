@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Account, Payment, AuthToken, ResponseMessage, Wish} from './models';
+import {Comment} from './models'
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,11 @@ import {Account, Payment, AuthToken, ResponseMessage, Wish} from './models';
 export class ApiService {
 
 	BASE_URL = 'http://127.0.0.1:8000';
+
+	httpOptions = {
+		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+	};
+	  
 	constructor(private client: HttpClient) {
 		client.head("Access-Control-Allow-Origin");
 	}
@@ -60,4 +66,15 @@ export class ApiService {
 		});
 	} 
 
+	getFeedbacks(): Observable<Comment[]>{
+		return this.client.get<Comment[]>(`${this.BASE_URL}/api/feedback/`);
+	}
+
+	addFeedback(email: string, content: string): Observable<Comment> {
+		return this.client.post<Comment>(`${this.BASE_URL}/api/feedback/`,
+		{
+			email: email,
+			content: content
+		});
+	}
 }

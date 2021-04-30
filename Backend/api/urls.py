@@ -3,7 +3,7 @@ from api.views import CategoryListAPIView, CategoryDetailAPIView, ProductListAPI
 from rest_framework_jwt.views import obtain_jwt_token
 
 from api.views.views_cbv import WishAPIView
-from api.views.views_fbv import register, account, payment
+from api.views.views_fbv import register, account, payment, feedbacks_list
 
 urlpatterns = [
     #path('categories/', category_list),
@@ -21,6 +21,7 @@ urlpatterns = [
     path('account/', account),
     path('payment/', payment),
     path('wish/', WishAPIView.as_view()),
-    path('wish/<int:pk>/', WishAPIView.as_view())
+    path('wish/<int:pk>/', WishAPIView.as_view()),
+    path('feedback/', feedbacks_list)
 ]
 

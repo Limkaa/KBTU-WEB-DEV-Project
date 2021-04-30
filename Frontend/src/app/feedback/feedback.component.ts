@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from '../models'
+import { ApiService } from '../api.service'
 
 @Component({
   selector: 'app-feedback',
@@ -8,18 +9,24 @@ import { Comment } from '../models'
 })
 export class FeedbackComponent implements OnInit {
   
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   comments: Comment[] = [];
+  public email = ""
+  public content = ""
 
-  add(email: string, content: string): void {
-    email = email.trim();
-    content = content.trim();
-    this.comments.push({ email, content } as Comment)
-    
+  ngOnInit(): void {
+    this.get_Feedbacks()
+  }
+
+  add(){
+    return this.apiService.addFeedback(this.email,this.content).subscribe(feedback => {
+      window.location.reload();
+    })
   }
   
-  ngOnInit(): void {
+  get_Feedbacks(){
+    this.apiService.getFeedbacks().subscribe(feedback => this.comments = feedback);
   }
 
 }

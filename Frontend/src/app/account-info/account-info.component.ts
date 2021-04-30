@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../models'
+import { Account, Wish } from '../models'
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service'
 import {AppComponent} from '../app.component'
@@ -13,18 +13,7 @@ export class AccountInfoComponent implements OnInit {
   loaded: boolean = false;
   new_wish = '';
 
-  // Just for example 
-  account: Account = {
-  	id: 1, 
-  	name: 'Alim Khamrayev', 
-  	email: 'demo@gmail.com', 
-  	phone: '+75558885588', 
-  	address: 'Almaty city', 
-  	subscription: 32, 
-  	wishes: ['Fish', 'Meat']
-  }
-
-  wishes = this.account.wishes;
+  account: Account;
 
   constructor(private apiService: ApiService, 
         private appComponent: AppComponent,
@@ -46,36 +35,40 @@ export class AccountInfoComponent implements OnInit {
         this.loaded = true;
       } else {
         this.appComponent.logged = false
-        localStorage.removeItem('')
+        localStorage.removeItem('token')
       }
     });
     this.loaded = true;
   }
 
   add_wish() {
-    if (this.new_wish != '') {
-      this.account.wishes.push(this.new_wish)
-      this.new_wish = ''
-    }
+    this.apiService.addWish(this.new_wish).subscribe((data) => {
+      if (data) {
+        this.new_wish = ''
+        this.getAccount()
+      } else {
+        alert('Something went wrong!')
+      }
+    });
   }
 
-  change_wish(index: number, event: any) {
-    this.account.wishes[index] = event.target.value;
+  update_wish(index: number, text: string) {
+    this.apiService.updateWish(this.account.wishes[index].id, text).subscribe((data) => {
+      if (data) {
+        this.getAccount()
+        alert('Successfully updated and saved!')
+      } else {
+        alert('Something went wrong!')
+      }
+    });
   }
 
   delete_wish(index: number) {
-    this.account.wishes.splice(index, 1)
-    console.log(this.account.wishes)
-  }
-
-  save_changes() {
-    console.log(this.account.wishes)
-    this.apiService.saveAccountChanges(this.wishes).subscribe((data) => {
-      if (data.message = "Changes successfully saved") {
+    this.apiService.deleteWish(this.account.wishes[index].id).subscribe((data) => {
+      if (data) {
         this.getAccount()
       } else {
-        this.appComponent.logged = false
-        localStorage.removeItem('token')
+        alert('Something went wrong!')
       }
     });
   }

@@ -1,11 +1,11 @@
 export interface Account {
 	id: number;
 	name: string;
-	email: string;
 	phone: string;
+	username: string;
 	address: string;
 	subscription: number;
-	wishes: Array<string>;
+	wishes: Array<Wish>;
 }
 
 export interface Comment {
@@ -16,6 +16,7 @@ export interface Comment {
 
 export interface Payment {
 	id: number;
+	amount: number;
 	method: string;
 	days: number;
 }
@@ -26,4 +27,9 @@ export interface AuthToken {
 
 export interface ResponseMessage {
 	message: string;
+}
+
+export interface Wish {
+	id: number,
+	text: string
 }

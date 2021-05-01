@@ -2,8 +2,9 @@ from rest_framework.decorators import api_view
 
 from api.models import Product, Profile, Wish, Payment
 from api.models import Category
+from api.models import Feedback
 from api.serializers import CategorySerializer, CategorySerializer2, ProfileSerializer, UserSerializer, \
-    PaymentSerializer
+    PaymentSerializer, FeedbackSerializer
 from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
@@ -76,3 +77,17 @@ def payment(request):
         user.save()
         return Response(serializer.data)
     return Response(serializer.errors)
+
+@api_view(['GET', 'POST'])
+def feedbacks_list(request):
+    if request.method == 'GET':
+        feedbacks = Feedback.objects.all()
+        serializer = FeedbackSerializer(feedbacks, many = True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = FeedbackSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)

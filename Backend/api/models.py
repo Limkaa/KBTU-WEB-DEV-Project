@@ -72,3 +72,18 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'{self.user}: {self.amount} -- {self.days} -- {self.method}'
+
+
+class Feedback(models.Model):
+    email = models.EmailField()
+    content = models.TextField()
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'content': self.content
+        }
+
+    def __str__(self):
+        return f'{self.id}: ({self.email}): {self.content}'

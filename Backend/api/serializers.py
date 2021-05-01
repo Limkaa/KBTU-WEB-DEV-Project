@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from api.models import Category, Product, Profile, Wish, Payment
+from api.models import Feedback
 
 
 class CategorySerializer(serializers.Serializer):
@@ -86,4 +87,18 @@ class PaymentSerializer(serializers.Serializer):
                                          days=validated_data.get("days"))
         return payment
 
+class FeedbackSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    email = serializers.EmailField()
+    content = serializers.CharField(max_length=500)
 
+    def create(self, validated_data):
+        feedback = Feedback.objects.create(email=validated_data.get("email"),
+                                            content=validated_data.get("content"))
+        return feedback
+    
+    # def update(self, instance, validated_data):
+    #     instance.email = validated_data.get('email')
+    #     instance.content = validated_data.get('content')
+    #     instance.save()
+    #     return instance

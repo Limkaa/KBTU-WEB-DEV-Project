@@ -12,12 +12,12 @@
 
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" #commEmail>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" [(ngModel)] = "email">
         <label for="exampleFormControlTextarea1" class="form-label">Leave a comment</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #commContent></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)] = "content"></textarea>
       </div>
 
-      <button type="button" class="btn btn-outline-primary" (click)="add(commEmail.value, commContent.value); commEmail.value=''; commContent.value=''">Post</button><br>
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Post</button><br>
       
       <div class="card" *ngFor="let comment of comments">
         <div class="card-header">
